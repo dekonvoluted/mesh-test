@@ -11,5 +11,5 @@ set( CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -std=c++11 )
 set( mesh_sources main.cpp )
 
 # Name the executable
-add_executable( mesh ${cpp_sources} )
+add_executable( mesh ${mesh_sources} )
 
