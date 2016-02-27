@@ -3,10 +3,12 @@
 A mesh is a collection of vertices connected by edges and forming cells.
 For the scope of this project, let's assume that a list of vertices and a list of cells are provided externally in a file that looks like this,
 
+```
 VERTEX UNIQNAME X-COORDINATE Y-COORDINATE
 ...
 CELL UNIQNAME VERTEXNAME VERTEXNAME ...
 ...
+```
 
 We would like to read this in and store it for queries.
 * Get a list of vertices in the domain
