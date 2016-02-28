@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <fstream>
+#include <iterator>
 #include <sstream>
 #include <stdexcept>
 
@@ -89,6 +90,32 @@ int Mesh::getVertexCount() const
 int Mesh::getCellCount() const
 {
     return cells.size();
+}
+
+std::vector<Cell*> Mesh::getCellsWithVertex( const std::string& vertexName ) const
+{
+    std::vector<Cell*> cellsWithVertex;
+    auto cellHasVertex = [ &vertexName ]( const Cell* const cell )
+    {
+        return cell->cellHasVertex( vertexName );
+    };
+
+    std::copy_if( cells.begin(), cells.end(), std::back_inserter( cellsWithVertex ), cellHasVertex );
+
+    return cellsWithVertex;
+}
+
+std::vector<Cell*> Mesh::getCellsWithVertex( const int x, const int y ) const
+{
+    std::vector<Cell*> cellsWithVertex;
+    auto cellHasVertex = [ &x, &y ]( const Cell* const cell )
+    {
+        return cell->cellHasVertex( x, y );
+    };
+
+    std::copy_if( cells.begin(), cells.end(), std::back_inserter( cellsWithVertex ), cellHasVertex );
+
+    return cellsWithVertex;
 }
 
 std::ostream& operator<<( std::ostream& output, const Mesh& mesh )

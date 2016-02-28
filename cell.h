@@ -19,6 +19,8 @@ class Cell
     ~Cell() = default;
 
     bool addVertex( const Vertex* );
+    bool cellHasVertex( const std::string& ) const;
+    bool cellHasVertex( const int, const int ) const;
 
     friend std::ostream& operator<<( std::ostream&, const Cell& );
 };

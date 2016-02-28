@@ -14,6 +14,12 @@ class Vertex
     Vertex( const std::string&, const int, const int );
     ~Vertex() = default;
 
+    bool hasSameName( const Vertex& ) const;
+    bool hasSameName( const std::string& ) const;
+
+    bool hasSameCoordinates( const Vertex& ) const;
+    bool hasSameCoordinates( const int, const int ) const;
+
     bool operator==( const std::string& ) const;
     bool operator!=( const std::string& ) const;
 
