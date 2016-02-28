@@ -20,7 +20,7 @@ class Cell
 
     bool addVertex( const Vertex* );
     bool cellHasVertex( const std::string& ) const;
-    bool cellHasVertex( const int, const int ) const;
+    bool cellHasVertex( const double, const double ) const;
 
     friend std::ostream& operator<<( std::ostream&, const Cell& );
 };

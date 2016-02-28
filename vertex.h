@@ -7,18 +7,18 @@
 class Vertex
 {
     std::string name = "";
-    int xcoordinate = 0;
-    int ycoordinate = 0;
+    double xcoordinate = 0.0;
+    double ycoordinate = 0.0;
 
     public:
-    Vertex( const std::string&, const int, const int );
+    Vertex( const std::string&, const double, const double );
     ~Vertex() = default;
 
     bool hasSameName( const Vertex& ) const;
     bool hasSameName( const std::string& ) const;
 
     bool hasSameCoordinates( const Vertex& ) const;
-    bool hasSameCoordinates( const int, const int ) const;
+    bool hasSameCoordinates( const double, const double ) const;
 
     bool operator==( const std::string& ) const;
     bool operator!=( const std::string& ) const;

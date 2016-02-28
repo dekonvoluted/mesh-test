@@ -1,6 +1,10 @@
+#include <cmath>
+
 #include "vertex.h"
 
-Vertex::Vertex( const std::string& vname, const int x, const int y ) : name( vname ), xcoordinate( x ), ycoordinate( y )
+const double threshold = 1e-6;
+
+Vertex::Vertex( const std::string& vname, const double x, const double y ) : name( vname ), xcoordinate( x ), ycoordinate( y )
 {}
 
 bool Vertex::hasSameName( const Vertex& rhs ) const
@@ -18,9 +22,9 @@ bool Vertex::hasSameCoordinates( const Vertex& rhs ) const
     return ( xcoordinate == rhs.xcoordinate ) and ( ycoordinate == rhs.ycoordinate );
 }
 
-bool Vertex::hasSameCoordinates( const int x, const int y ) const
+bool Vertex::hasSameCoordinates( const double x, const double y ) const
 {
-    return ( xcoordinate == x ) and ( ycoordinate == y );
+    return ( std::fabs( xcoordinate - x ) <= threshold ) and ( std::fabs( ycoordinate - y ) <= threshold );
 }
 
 bool Vertex::operator==( const std::string& rhsName ) const

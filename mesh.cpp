@@ -29,8 +29,8 @@ Mesh::Mesh( const std::string& datFilePath )
             lineStream >> vertexName;
 
             // Record coordinates
-            auto xcoordinate = 0;
-            auto ycoordinate = 0;
+            auto xcoordinate = 0.0;
+            auto ycoordinate = 0.0;
             lineStream >> xcoordinate;
             lineStream >> ycoordinate;
 
@@ -105,7 +105,7 @@ std::vector<Cell*> Mesh::getCellsWithVertex( const std::string& vertexName ) con
     return cellsWithVertex;
 }
 
-std::vector<Cell*> Mesh::getCellsWithVertex( const int x, const int y ) const
+std::vector<Cell*> Mesh::getCellsWithVertex( const double x, const double y ) const
 {
     std::vector<Cell*> cellsWithVertex;
     auto cellHasVertex = [ &x, &y ]( const Cell* const cell )
