@@ -19,7 +19,7 @@ bool Vertex::hasSameName( const std::string& vertexName ) const
 
 bool Vertex::hasSameCoordinates( const Vertex& rhs ) const
 {
-    return ( xcoordinate == rhs.xcoordinate ) and ( ycoordinate == rhs.ycoordinate );
+    return ( std::fabs( xcoordinate - rhs.xcoordinate ) <= threshold ) and ( std::fabs( ycoordinate - rhs.ycoordinate ) <= threshold );
 }
 
 bool Vertex::hasSameCoordinates( const double x, const double y ) const
