@@ -3,6 +3,7 @@
 
 #include "vertex.h"
 
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -18,6 +19,8 @@ class Cell
     ~Cell() = default;
 
     bool addVertex( const Vertex* );
+
+    friend std::ostream& operator<<( std::ostream&, const Cell& );
 };
 
 #endif

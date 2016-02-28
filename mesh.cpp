@@ -91,3 +91,12 @@ int Mesh::getCellCount() const
     return cells.size();
 }
 
+std::ostream& operator<<( std::ostream& output, const Mesh& mesh )
+{
+    for ( const auto& cell : mesh.cells ) {
+        output << *cell << std::endl;
+    }
+
+    return output;
+}
+

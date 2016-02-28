@@ -4,6 +4,7 @@
 #include "cell.h"
 #include "vertex.h"
 
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -18,6 +19,8 @@ class Mesh
 
     int getVertexCount() const;
     int getCellCount() const;
+
+    friend std::ostream& operator<<( std::ostream&, const Mesh& );
 };
 
 #endif

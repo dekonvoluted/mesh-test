@@ -9,6 +9,8 @@ int main()
     std::cout << "Number of vertices: " << mesh.getVertexCount() << std::endl;
     std::cout << "Number of cells: " << mesh.getCellCount() << std::endl;
 
+    std::cout << mesh << std::endl;
+
     return 0;
 }
 

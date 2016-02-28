@@ -1,6 +1,7 @@
 #ifndef VERTEX_H
 #define VERTEX_H
 
+#include <iostream>
 #include <string>
 
 class Vertex
@@ -15,6 +16,8 @@ class Vertex
 
     bool operator==( const std::string& ) const;
     bool operator!=( const std::string& ) const;
+
+    friend std::ostream& operator<<( std::ostream&, const Vertex& );
 };
 
 #endif

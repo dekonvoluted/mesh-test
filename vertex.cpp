@@ -13,3 +13,10 @@ bool Vertex::operator!=( const std::string& rhsName ) const
     return not operator==( rhsName );
 }
 
+std::ostream& operator<<( std::ostream& output, const Vertex& vertex )
+{
+    output << "Vertex: " << vertex.name << "\t( " << vertex.xcoordinate << ", " << vertex.ycoordinate << " )";
+
+    return output;
+}
+
