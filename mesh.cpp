@@ -1,7 +1,9 @@
 #include "mesh.h"
 
+#include <algorithm>
 #include <fstream>
 #include <sstream>
+#include <stdexcept>
 
 Mesh::Mesh( const std::string& datFilePath )
 {
@@ -35,8 +37,30 @@ Mesh::Mesh( const std::string& datFilePath )
             vertices.push_back( new Vertex( vertexName, xcoordinate, ycoordinate ) );
         }
 
-        // Count vertices or cells
-        if ( line.find( "CELL" ) != std::string::npos ) ++cellCount;
+        // Record cells
+        if ( line.find( "CELL" ) == 0 ) {
+
+            std::stringstream lineStream( line );
+
+            // Discard first string, take second as name
+            std::string cellName = "";
+            lineStream >> cellName;
+            lineStream >> cellName;
+
+            // Record cell
+            cells.push_back( new Cell( cellName ) );
+
+            // Record vertices bordering the cell
+            std::string vertexName;
+            while ( lineStream >> vertexName ) {
+                auto iterator = std::find_if( vertices.begin(), vertices.end(), [ &vertexName ]( const Vertex* const vertex ) { return *vertex == vertexName; } );
+                if ( iterator == vertices.end() ) {
+                    std::runtime_error( "Vertex " + vertexName + " needed by Cell " + cellName + " not known." );
+                }
+
+                cells.back()->addVertex( *iterator );
+            }
+        }
     }
 }
 
@@ -48,15 +72,22 @@ Mesh::~Mesh()
     }
 
     vertices.clear();
+
+    // Release memory used by cells
+    for ( auto& cell : cells ) {
+        delete cell;
+    }
+
+    cells.clear();
 }
 
-int Mesh::getVertexCount()
+int Mesh::getVertexCount() const
 {
     return vertices.size();
 }
 
-int Mesh::getCellCount()
+int Mesh::getCellCount() const
 {
-    return cellCount;
+    return cells.size();
 }
 

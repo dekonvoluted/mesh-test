@@ -1,6 +1,7 @@
 #ifndef MESH_H
 #define MESH_H
 
+#include "cell.h"
 #include "vertex.h"
 
 #include <string>
@@ -9,14 +10,14 @@
 class Mesh
 {
     std::vector<Vertex*> vertices;
-    int cellCount = 0;
+    std::vector<Cell*> cells;
 
     public:
     Mesh( const std::string& );
     ~Mesh();
 
-    int getVertexCount();
-    int getCellCount();
+    int getVertexCount() const;
+    int getCellCount() const;
 };
 
 #endif

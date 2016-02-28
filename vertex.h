@@ -12,6 +12,9 @@ class Vertex
     public:
     Vertex( const std::string&, const int, const int );
     ~Vertex() = default;
+
+    bool operator==( const std::string& ) const;
+    bool operator!=( const std::string& ) const;
 };
 
 #endif
