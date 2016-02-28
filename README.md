@@ -18,3 +18,25 @@ We would like to read this in and store it for queries.
 * Given a cell, how many vertices/edges does it have?
 * Given a coordinate, which cell is the coordinate in?
 
+# Building instructions
+
+To build in-source, do,
+
+```
+% cmake .
+% make
+% ./mesh
+```
+
+To build out of source, do,
+
+```
+% mkdir build/
+% cd build/
+% cmake ..
+% make
+% ./mesh
+```
+
+If successful, you should see a list of cells and their vertices as defined in the test data printed out.
+
