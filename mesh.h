@@ -1,16 +1,19 @@
 #ifndef MESH_H
 #define MESH_H
 
+#include "vertex.h"
+
 #include <string>
+#include <vector>
 
 class Mesh
 {
-    int vertexCount = 0;
+    std::vector<Vertex*> vertices;
     int cellCount = 0;
 
     public:
     Mesh( const std::string& );
-    ~Mesh() = default;
+    ~Mesh();
 
     int getVertexCount();
     int getCellCount();

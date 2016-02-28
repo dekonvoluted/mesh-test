@@ -8,7 +8,7 @@ project( mesh )
 set( CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -std=c++11 )
 
 # Designate sources
-set( mesh_sources main.cpp mesh.cpp )
+set( mesh_sources main.cpp mesh.cpp vertex.cpp )
 
 # Name the executable
 add_executable( mesh ${mesh_sources} )
