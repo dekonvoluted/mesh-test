@@ -54,7 +54,7 @@ Mesh::Mesh( const std::string& datFilePath )
             // Record vertices bordering the cell
             std::string vertexName;
             while ( lineStream >> vertexName ) {
-                auto iterator = std::find_if( vertices.begin(), vertices.end(), [ &vertexName ]( const Vertex* const vertex ) { return *vertex == vertexName; } );
+                auto iterator = std::find_if( vertices.begin(), vertices.end(), [ &vertexName ]( const Vertex* const vertex ) { return vertex->hasSameName( vertexName ); } );
                 if ( iterator == vertices.end() ) {
                     std::runtime_error( "Vertex " + vertexName + " needed by Cell " + cellName + " not known." );
                 }
