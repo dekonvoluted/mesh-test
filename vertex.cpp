@@ -1,16 +1,16 @@
 #include "vertex.h"
 
-Vertex::Vertex( const std::string& vname, const int x, const int y ) : name( vname ), xcoordinate( x ), ycoordinate( y )
+Vertex::Vertex( const long vid, const int x, const int y ) : id( vid ), xcoordinate( x ), ycoordinate( y )
 {}
 
-bool Vertex::hasSameName( const Vertex& rhs ) const
+bool Vertex::hasSameID( const Vertex& rhs ) const
 {
-    return name == rhs.name;
+    return id == rhs.id;
 }
 
-bool Vertex::hasSameName( const std::string& vertexName ) const
+bool Vertex::hasSameID( const long vertexID ) const
 {
-    return name == vertexName;
+    return id == vertexID;
 }
 
 bool Vertex::hasSameCoordinates( const Vertex& rhs ) const
@@ -23,19 +23,19 @@ bool Vertex::hasSameCoordinates( const int x, const int y ) const
     return ( xcoordinate == x ) and ( ycoordinate == y );
 }
 
-bool Vertex::operator==( const std::string& rhsName ) const
+bool Vertex::operator==( const long rhsID ) const
 {
-    return hasSameName( rhsName );
+    return hasSameID( rhsID );
 }
 
-bool Vertex::operator!=( const std::string& rhsName ) const
+bool Vertex::operator!=( const long rhsID ) const
 {
-    return not operator==( rhsName );
+    return not operator==( rhsID );
 }
 
 std::ostream& operator<<( std::ostream& output, const Vertex& vertex )
 {
-    output << "Vertex: " << vertex.name << "\t( " << vertex.xcoordinate << ", " << vertex.ycoordinate << " )";
+    output << "Vertex: " << vertex.id << "\t( " << vertex.xcoordinate << ", " << vertex.ycoordinate << " )";
 
     return output;
 }

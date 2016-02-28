@@ -4,22 +4,21 @@
 #include "vertex.h"
 
 #include <iostream>
-#include <string>
 #include <vector>
 
 class Cell
 {
-    std::string name = "";
+    long id = 0l;
     std::vector<const Vertex*> vertices;
 
     public:
-    Cell( const std::string& );
+    Cell( const long );
 
     // Cell does not own the vertices resources
     ~Cell() = default;
 
     bool addVertex( const Vertex* );
-    bool cellHasVertex( const std::string& ) const;
+    bool cellHasVertex( const long ) const;
     bool cellHasVertex( const int, const int ) const;
 
     friend std::ostream& operator<<( std::ostream&, const Cell& );

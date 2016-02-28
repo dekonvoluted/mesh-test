@@ -1,6 +1,6 @@
 #include "cell.h"
 
-Cell::Cell( const std::string& cname ) : name( cname )
+Cell::Cell( const long cid ) : id( cid )
 {}
 
 bool Cell::addVertex( const Vertex* vertex )
@@ -8,10 +8,10 @@ bool Cell::addVertex( const Vertex* vertex )
     vertices.push_back( vertex );
 }
 
-bool Cell::cellHasVertex( const std::string& vertexName ) const
+bool Cell::cellHasVertex( const long vertexID ) const
 {
     for ( const auto& vertex : vertices ) {
-        if ( vertex->hasSameName( vertexName ) ) return true;
+        if ( vertex->hasSameID( vertexID ) ) return true;
     }
 
     return false;
@@ -28,7 +28,7 @@ bool Cell::cellHasVertex( const int x, const int y ) const
 
 std::ostream& operator<<( std::ostream& output, const Cell& cell )
 {
-    output << "Cell name: " << cell.name << std::endl;
+    output << "Cell ID: " << cell.id << std::endl;
     output << "Vertices: " << std::endl;
     for ( const auto& vertex : cell.vertices ) {
         output << *vertex << std::endl;

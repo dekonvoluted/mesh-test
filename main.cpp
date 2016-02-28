@@ -12,7 +12,7 @@ int main()
     std::cout << mesh << std::endl;
 
     // Check if mesh knows which cells contain a vertex
-    auto cellsWithVertex = mesh.getCellsWithVertex( "5" );
+    auto cellsWithVertex = mesh.getCellsWithVertex( 5 );
     std::cout << "Cells with vertex 5: " << std::endl;
     for ( const auto& cell : cellsWithVertex ) {
         std::cout << *cell << std::endl;

@@ -23,10 +23,12 @@ Mesh::Mesh( const std::string& datFilePath )
 
             std::stringstream lineStream( line );
 
-            // Discard first string, take second as name
-            std::string vertexName = "";
-            lineStream >> vertexName;
-            lineStream >> vertexName;
+            // Discard first string
+            std::string header;
+            lineStream >> header;
+
+            long vertexID = 0l;
+            lineStream >> vertexID;
 
             // Record coordinates
             auto xcoordinate = 0;
@@ -35,7 +37,7 @@ Mesh::Mesh( const std::string& datFilePath )
             lineStream >> ycoordinate;
 
             // Record vertex
-            vertices.push_back( new Vertex( vertexName, xcoordinate, ycoordinate ) );
+            vertices.push_back( new Vertex( vertexID, xcoordinate, ycoordinate ) );
         }
 
         // Record cells
@@ -43,20 +45,22 @@ Mesh::Mesh( const std::string& datFilePath )
 
             std::stringstream lineStream( line );
 
-            // Discard first string, take second as name
-            std::string cellName = "";
-            lineStream >> cellName;
-            lineStream >> cellName;
+            // Discard first string
+            std::string header;
+            lineStream >> header;
+
+            long cellID = 0l;
+            lineStream >> cellID;
 
             // Record cell
-            cells.push_back( new Cell( cellName ) );
+            cells.push_back( new Cell( cellID ) );
 
             // Record vertices bordering the cell
-            std::string vertexName;
-            while ( lineStream >> vertexName ) {
-                auto iterator = std::find_if( vertices.begin(), vertices.end(), [ &vertexName ]( const Vertex* const vertex ) { return vertex->hasSameName( vertexName ); } );
+            long vertexID;
+            while ( lineStream >> vertexID ) {
+                auto iterator = std::find_if( vertices.begin(), vertices.end(), [ &vertexID ]( const Vertex* const vertex ) { return vertex->hasSameID( vertexID ); } );
                 if ( iterator == vertices.end() ) {
-                    std::runtime_error( "Vertex " + vertexName + " needed by Cell " + cellName + " not known." );
+                    std::runtime_error( "Vertex " + std::to_string( vertexID ) + " needed by Cell " + std::to_string( cellID ) + " not known." );
                 }
 
                 cells.back()->addVertex( *iterator );
@@ -92,12 +96,12 @@ int Mesh::getCellCount() const
     return cells.size();
 }
 
-std::vector<Cell*> Mesh::getCellsWithVertex( const std::string& vertexName ) const
+std::vector<Cell*> Mesh::getCellsWithVertex( const long vertexID ) const
 {
     std::vector<Cell*> cellsWithVertex;
-    auto cellHasVertex = [ &vertexName ]( const Cell* const cell )
+    auto cellHasVertex = [ &vertexID ]( const Cell* const cell )
     {
-        return cell->cellHasVertex( vertexName );
+        return cell->cellHasVertex( vertexID );
     };
 
     std::copy_if( cells.begin(), cells.end(), std::back_inserter( cellsWithVertex ), cellHasVertex );
