@@ -4,7 +4,7 @@
 
 const double threshold = 1e-6;
 
-Vertex::Vertex( const std::string& vname, const double x, const double y ) : name( vname ), xcoordinate( x ), ycoordinate( y )
+Vertex::Vertex( const std::string& vname, const double x, const double y, const double z ) : name( vname ), xcoordinate( x ), ycoordinate( y ), zcoordinate( z )
 {}
 
 bool Vertex::hasSameName( const Vertex& rhs ) const
@@ -19,12 +19,12 @@ bool Vertex::hasSameName( const std::string& vertexName ) const
 
 bool Vertex::hasSameCoordinates( const Vertex& rhs ) const
 {
-    return ( std::fabs( xcoordinate - rhs.xcoordinate ) <= threshold ) and ( std::fabs( ycoordinate - rhs.ycoordinate ) <= threshold );
+    return ( std::fabs( xcoordinate - rhs.xcoordinate ) <= threshold ) and ( std::fabs( ycoordinate - rhs.ycoordinate ) <= threshold ) and ( std::fabs( zcoordinate - rhs.zcoordinate ) <= threshold );
 }
 
-bool Vertex::hasSameCoordinates( const double x, const double y ) const
+bool Vertex::hasSameCoordinates( const double x, const double y, const double z ) const
 {
-    return ( std::fabs( xcoordinate - x ) <= threshold ) and ( std::fabs( ycoordinate - y ) <= threshold );
+    return ( std::fabs( xcoordinate - x ) <= threshold ) and ( std::fabs( ycoordinate - y ) <= threshold ) and ( std::fabs( zcoordinate - z ) <= threshold );
 }
 
 bool Vertex::operator==( const std::string& rhsName ) const
@@ -39,7 +39,7 @@ bool Vertex::operator!=( const std::string& rhsName ) const
 
 std::ostream& operator<<( std::ostream& output, const Vertex& vertex )
 {
-    output << "Vertex: " << vertex.name << "\t( " << vertex.xcoordinate << ", " << vertex.ycoordinate << " )";
+    output << "Vertex: " << vertex.name << "\t( " << vertex.xcoordinate << ", " << vertex.ycoordinate << ", " << vertex.zcoordinate << " )";
 
     return output;
 }

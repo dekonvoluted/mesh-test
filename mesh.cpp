@@ -31,11 +31,13 @@ Mesh::Mesh( const std::string& datFilePath )
             // Record coordinates
             auto xcoordinate = 0.0;
             auto ycoordinate = 0.0;
+            auto zcoordinate = 0.0;
             lineStream >> xcoordinate;
             lineStream >> ycoordinate;
+            lineStream >> zcoordinate;
 
             // Record vertex
-            vertices.push_back( new Vertex( vertexName, xcoordinate, ycoordinate ) );
+            vertices.push_back( new Vertex( vertexName, xcoordinate, ycoordinate, zcoordinate ) );
         }
 
         // Record cells
@@ -105,12 +107,12 @@ std::vector<Cell*> Mesh::getCellsWithVertex( const std::string& vertexName ) con
     return cellsWithVertex;
 }
 
-std::vector<Cell*> Mesh::getCellsWithVertex( const double x, const double y ) const
+std::vector<Cell*> Mesh::getCellsWithVertex( const double x, const double y, const double z ) const
 {
     std::vector<Cell*> cellsWithVertex;
-    auto cellHasVertex = [ &x, &y ]( const Cell* const cell )
+    auto cellHasVertex = [ &x, &y, &z ]( const Cell* const cell )
     {
-        return cell->cellHasVertex( x, y );
+        return cell->cellHasVertex( x, y, z );
     };
 
     std::copy_if( cells.begin(), cells.end(), std::back_inserter( cellsWithVertex ), cellHasVertex );

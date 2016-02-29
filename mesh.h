@@ -21,7 +21,7 @@ class Mesh
     int getCellCount() const;
 
     std::vector<Cell*> getCellsWithVertex( const std::string& ) const;
-    std::vector<Cell*> getCellsWithVertex( const double, const double ) const;
+    std::vector<Cell*> getCellsWithVertex( const double, const double, const double ) const;
 
     friend std::ostream& operator<<( std::ostream&, const Mesh& );
 };

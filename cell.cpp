@@ -17,10 +17,10 @@ bool Cell::cellHasVertex( const std::string& vertexName ) const
     return false;
 }
 
-bool Cell::cellHasVertex( const double x, const double y ) const
+bool Cell::cellHasVertex( const double x, const double y, const double z ) const
 {
     for ( const auto& vertex : vertices ) {
-        if ( vertex->hasSameCoordinates( x, y ) ) return true;
+        if ( vertex->hasSameCoordinates( x, y, z ) ) return true;
     }
 
     return false;

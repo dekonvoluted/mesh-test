@@ -19,8 +19,8 @@ int main()
     }
 
     // Check if mesh knows which cells contain a vertex by coordinate
-    cellsWithVertex = mesh.getCellsWithVertex( 2, 2 );
-    std::cout << "Cells with vertex ( 2, 2 ): " << std::endl;
+    cellsWithVertex = mesh.getCellsWithVertex( 2, 2, 0 );
+    std::cout << "Cells with vertex ( 2, 2, 0 ): " << std::endl;
     for ( const auto& cell : cellsWithVertex ) {
         std::cout << *cell << std::endl;
     }
